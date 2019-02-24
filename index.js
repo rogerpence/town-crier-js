@@ -14,30 +14,84 @@ const sleep = (milliseconds) => {
 //     crierMainContainer.insertAdjacentHTML('afterbegin', placeholderDiv);
 //  }
 
-const showCrier = () => {
-   const townCrier = new tc.TownCrier();
-   const html = townCrier.getHTML();
-   townCrier.addCrier(html);
-}
 
-const msg = [];
+const crierOptions = [];
 
-msg.push({heading: "Heading 1",
-          msg: "Wouldn't it be nice if we were older, then we wouldn't have to wait so long.",
-          status: "primary",
-          closeType: 'user',
-          duration: 6000});
+crierOptions.push({
+   heading: "Heading 1",
+   msg: "Wouldn't it be nice if we were older, then we wouldn't have to wait so long.",
+   status: "primary",
+   closeType: 'user',
+   duration: 2000
+});
+
+crierOptions.push({
+   heading: "Heading 2",
+   msg: "Rolland the Thompson Headless Gunner.",
+   status: "secondary",
+   closeType: 'auto',
+   duration: 4000
+});
+
+crierOptions.push({
+   heading: "Heading 3",
+   msg: "I'm tied to you like the buttons on your blouse.",
+   status: "success",
+   closeType: 'use',
+   duration: 6000
+});
+
+// crierOptions.push({
+//    heading: "Heading 4",
+//    msg: "Wouldn't it be nice if we were older, then we wouldn't have to wait so long.",
+//    status: "danger",
+//    closeType: 'manual',
+//    duration: 200000
+// });
+
+crierOptions.push({
+   heading: "Heading 5",
+   msg: "Rolland the Thompson Headless Gunner.",
+   status: "warning",
+   closeType: 'auto',
+   duration: 16000
+});
+
+crierOptions.push({
+   heading: "Heading 6",
+   msg: "I'm tied to you like the buttons on your blouse.",
+   status: "info",
+   closeType: 'manual',
+   duration: 18000
+});
 
 
+setTimeout(()=> {
+   new tc.TownCrier(crierOptions[0]);
+}, 1000);
+
+setTimeout(()=> {
+    new tc.TownCrier(crierOptions[1]);
+}, 2000);
+
+setTimeout(()=> {
+   new tc.TownCrier(crierOptions[2]);
+}, 3000);
 
 
+// //instanceCrier(crierOptions[0]);
+// const index = 0;
+
+// setTimeout((index) => {
+//    new tc.TownCrier(crierOptions[index])
+// },2000);
 
 
 //const addCrierClick = Array.from(document.querySelectorAll('.add-crier'));
 
-setTimeout(showCrier, 2000);
-setTimeout(showCrier, 3000);
-setTimeout(showCrier, 4000);
+// setTimeout(showCrier, 2000);
+// setTimeout(showCrier, 3000);
+// setTimeout(showCrier, 4000);
 
 
 
