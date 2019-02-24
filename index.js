@@ -5,16 +5,6 @@ const sleep = (milliseconds) => {
    return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
 
-
-// const addCrier = function() {
-//     const crierMainContainer = document.querySelector('.all-criers-container');
-//     const  placeholderDiv =
-//  `<div id="crier-placeholder" style="width: 175px; height: 0; opacity: 0; background-color: red;">
-//  </div>`
-//     crierMainContainer.insertAdjacentHTML('afterbegin', placeholderDiv);
-//  }
-
-
 const crierOptions = [];
 
 crierOptions.push({
@@ -22,7 +12,8 @@ crierOptions.push({
    msg: "Wouldn't it be nice if we were older, then we wouldn't have to wait so long.",
    status: "primary",
    closeType: 'user',
-   duration: 2000
+   progressBar: false,
+   duration: 12000
 });
 
 crierOptions.push({
@@ -30,22 +21,24 @@ crierOptions.push({
    msg: "Rolland the Thompson Headless Gunner.",
    status: "secondary",
    closeType: 'auto',
-   duration: 4000
+   progressBar: true,
+   duration: 5000
 });
 
 crierOptions.push({
    heading: "Heading 3",
    msg: "I'm tied to you like the buttons on your blouse.",
    status: "success",
-   closeType: 'both',
-   duration: 6000
+   closeType: 'auto',
+   progressBar: false,
+   duration: 10000
 });
 
 crierOptions.push({
    heading: "Heading 4",
    msg: "Wouldn't it be nice if we were older, then we wouldn't have to wait so long.",
    status: "danger",
-   closeType: 'manual',
+   closeType: 'auto',
    duration: 200000
 });
 
@@ -53,7 +46,7 @@ crierOptions.push({
    heading: "Heading 5",
    msg: "Rolland the Thompson Headless Gunner.",
    status: "warning",
-   closeType: 'auto',
+   closeType: 'user',
    duration: 16000
 });
 
@@ -61,7 +54,7 @@ crierOptions.push({
    heading: "Heading 6",
    msg: "I'm tied to you like the buttons on your blouse.",
    status: "info",
-   closeType: 'manual',
+   closeType: 'user',
    duration: 18000
 });
 

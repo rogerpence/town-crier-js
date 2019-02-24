@@ -56,7 +56,7 @@ div.criers-outer-container {
    -moz-border-radius: .5em;
    border-radius: .5em;
    font-family: sans-serif;
-   font-size: .8em;
+   font-size: .7em;
    box-shadow: .1em .1em .1em .1em rgba(0, 0, 0, 0.2);
    opacity: 0;
    max-width: 25em;
@@ -98,6 +98,23 @@ div.criers-outer-container {
    padding-top: 0.4em;
    font-size: 0.9em;
  }
+
+ .crier .progress-bar {
+   width: 100%;
+ }
+
+ .outline {
+   border: 1px solid darkgray;
+ }
+
+
+.crier .progress {
+  width: 0;
+  height: .2em;
+  background-color:#31B404;
+}
+
+
 
  .crier a {
    color: black;
