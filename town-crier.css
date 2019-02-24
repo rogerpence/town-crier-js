@@ -1,0 +1,40 @@
+div.criers-outer-container {
+    pointer-events: none;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    width: auto;
+    z-index: 500;
+    border: 1px solid red;
+   }
+
+.criers-inner-container {
+   pointer-events: none;
+   display: grid;
+   grid-template-rows: auto;
+   grid-row-gap: 0;
+   justify-items: end;
+   justify-content: end;
+}
+
+  .note {
+     margin-bottom: .5rem;
+  }
+
+  .note1 {
+     width: 200px;
+     height: 20px;
+     background-color: rebeccapurple;
+  }
+
+  .note2 {
+     width: 480px;
+     height: 24px;
+     background-color: pink;
+  }
+
+  .note3 {
+     width: 210px;
+     height: 24px;
+     background-color: limegreen;
+  }
