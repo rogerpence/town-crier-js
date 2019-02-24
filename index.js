@@ -37,17 +37,17 @@ crierOptions.push({
    heading: "Heading 3",
    msg: "I'm tied to you like the buttons on your blouse.",
    status: "success",
-   closeType: 'use',
+   closeType: 'both',
    duration: 6000
 });
 
-// crierOptions.push({
-//    heading: "Heading 4",
-//    msg: "Wouldn't it be nice if we were older, then we wouldn't have to wait so long.",
-//    status: "danger",
-//    closeType: 'manual',
-//    duration: 200000
-// });
+crierOptions.push({
+   heading: "Heading 4",
+   msg: "Wouldn't it be nice if we were older, then we wouldn't have to wait so long.",
+   status: "danger",
+   closeType: 'manual',
+   duration: 200000
+});
 
 crierOptions.push({
    heading: "Heading 5",
@@ -72,11 +72,11 @@ setTimeout(()=> {
 
 setTimeout(()=> {
     new tc.TownCrier(crierOptions[1]);
-}, 2000);
+}, 3000);
 
 setTimeout(()=> {
    new tc.TownCrier(crierOptions[2]);
-}, 3000);
+}, 5000);
 
 
 // //instanceCrier(crierOptions[0]);

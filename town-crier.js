@@ -5,7 +5,7 @@ import {crierStatus} from './town-crier-status.js';
 
 export function TownCrier(options) {
     this.options = this.assignOptionDefaults(options)
-    this.addCrier(this.options);
+    this.showCrier(this.options);
 };
 
 TownCrier.prototype.assignOptionDefaults = function(options) {
@@ -118,6 +118,12 @@ TownCrier.prototype.replaceCrierPlaceholderWithCrier = function(crierInfo) {
         element.style.transition = 'opacity 750ms ease, margin-bottom 750ms ease';
     })
 
+    dom.addAndRemoveHandler(newCrierElement, 'click', (event) => {
+        if (newCrierElement.getAttribute('closeType') !== 'auto') {
+            this.removeCrier(newCrierElement);
+        }
+    });
+
     const duration = newCrierElement.getAttribute('data-duration');
     if (newCrierElement.getAttribute('data-close-type') !== 'user') {
         window.setTimeout(()=> {
@@ -126,7 +132,7 @@ TownCrier.prototype.replaceCrierPlaceholderWithCrier = function(crierInfo) {
     }
 }
 
-TownCrier.prototype.addCrier = function(options) {
+TownCrier.prototype.showCrier = function(options) {
     const crierInfo = this.insertCrierIntoDomAsHiddeElement(options);
     console.log(crierInfo);
 
@@ -143,7 +149,6 @@ TownCrier.prototype.addCrier = function(options) {
 
     dom.applyTransition(crierTemp, (element) => {
         element.style.height = `${crierInfo.height}px`;
-        //element.style.marginBottom = '1rem';
         element.style.transition = 'height 500ms ease, margin-bottom 500ms ease';
     })
 }
