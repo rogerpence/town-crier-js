@@ -13,7 +13,7 @@ TownCrier.prototype.assignOptionDefaults = function(options) {
     const DEFAULT_STATUS_INDEX = 0;
 
     options.classList = options.classList || '';
-    options.duration = options.duration || 5000;
+    options.duration = options.duration || 8000;
     options.closeType = options.closeType || 'auto';
     options.idNumber = Math.floor(Math.random() * Math.floor(5000));
 
@@ -101,21 +101,14 @@ TownCrier.prototype.insertCrierIntoDomAsHiddenElement = function(options) {
 }
 
 TownCrier.prototype.removeCrier = function(newCrierElement, duration = 0) {
-    window.setTimeout(()=> {
-        dom.addAndRemoveHandler(newCrierElement, 'transitionend', (event) => {
-            dom.removeElement(newCrierElement);
-        });
+    dom.addAndRemoveHandler(newCrierElement, 'transitionend', (event) => {
+        dom.removeElement(newCrierElement);
+    });
 
-        const style = getComputedStyle(newCrierElement);
-        console.log(style);
-
-        newCrierElement.style.height = '77px';
-
-        newCrierElement.style.minHeight = 0;
-        newCrierElement.style.transition = 'opacity 400ms ease, height 2400ms ease';
-        newCrierElement.style.opacity = 0;
-        newCrierElement.style.height = 0;
-    }, duration);
+    newCrierElement.style.minHeight = 0;
+    newCrierElement.style.transition = 'opacity 750ms ease, height 750ms ease';
+    newCrierElement.style.opacity = 0;
+    newCrierElement.style.height = 0;
 }
 
 TownCrier.prototype.replaceCrierPlaceholderWithCrier = function(crierInfo, options) {
@@ -125,6 +118,7 @@ TownCrier.prototype.replaceCrierPlaceholderWithCrier = function(crierInfo, optio
     const newCrierElement = crierInfo.element;
     newCrierElement.style.position = 'static';
     newCrierElement.style.height = `${crierInfo.height}px`;
+    newCrierElement.setAttribute('data-height', `${crierInfo.height}px`);
 
     crierMainContainer.replaceChild(newCrierElement, crierPlaceholder);
 
@@ -143,20 +137,17 @@ TownCrier.prototype.replaceCrierPlaceholderWithCrier = function(crierInfo, optio
 
     if (newCrierElement.getAttribute('data-close-type') !== 'user') {
         window.setTimeout(()=> {
-            this.removeCrier(newCrierElement, duration);
+            this.removeCrier(newCrierElement);
         }, duration);
 
         if (duration > 0 && options.progressBar) {
             const progressBar = document.getElementById(`pb${options.idNumber}`);
             progressBar.parentElement.classList.add('outline');
-            console.log(progressBar);
-            console.log(progressBar.parentElement.clientWidth);
 
             dom.applyTransition(progressBar, (element) => {
+                element.style.width = 0;
+                element.style.transition = `width ${duration}ms ease`;
                 element.style.width = `${progressBar.parentElement.clientWidth}px`;
-                // I don't know why 'duration * 2' works here. It seems like
-                // it should be 'duration' only.
-                element.style.transition = `width ${duration * 2}ms ease`;
             })
         }
     }
@@ -177,6 +168,6 @@ TownCrier.prototype.showCrier = function(options) {
 
     dom.applyTransition(crierTemp, (element) => {
         element.style.height = `${crierInfo.height}px`;
-        element.style.transition = 'height 500ms ease, margin-bottom 500ms ease';
+        element.style.transition = 'height 500ms ease'; //, margin-bottom 500ms ease';
     })
 }

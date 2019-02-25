@@ -20,8 +20,8 @@ crierOptions.push({
    msg: "Rolland the Thompson Headless Gunner.",
    status: "secondary",
    closeType: 'auto',
-   progressBar: true,
-   duration: 2500
+   duration: 8000,
+   progressBar: false
 });
 
 crierOptions.push({
@@ -29,8 +29,8 @@ crierOptions.push({
    msg: "I'm tied to you like the buttons on your blouse.",
    status: "success",
    closeType: 'auto',
-   progressBar: true,
-   duration: 10000
+   progressBar: false,
+   duration: 6000
 });
 
 crierOptions.push({
@@ -38,15 +38,17 @@ crierOptions.push({
    msg: "Wouldn't it be nice if we were older, then we wouldn't have to wait so long.",
    status: "danger",
    closeType: 'auto',
-   duration: 200000
+   progressBar: false,
+   duration: 6000
 });
 
 crierOptions.push({
    heading: "Heading 5",
    msg: "Rolland the Thompson Headless Gunner.",
    status: "warning",
-   closeType: 'user',
-   duration: 16000
+   closeType: 'auto',
+   progressBar: false,
+   duration: 6000
 });
 
 crierOptions.push({
@@ -68,8 +70,19 @@ setTimeout(()=> {
 
 setTimeout(()=> {
    new tc.TownCrier(crierOptions[2]);
-}, 5000);
+}, 6000);
 
+setTimeout(()=> {
+   new tc.TownCrier(crierOptions[3]);
+}, 9000);
+
+setTimeout(()=> {
+   new tc.TownCrier(crierOptions[4]);
+}, 12000);
+
+setTimeout(()=> {
+   new tc.TownCrier(crierOptions[5]);
+}, 15000);
 
 // //instanceCrier(crierOptions[0]);
 // const index = 0;
