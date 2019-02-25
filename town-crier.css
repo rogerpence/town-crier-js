@@ -80,18 +80,39 @@ div.criers-outer-container {
  }
 
  .crier .progress-bar {
+   margin-top: .6em;
    width: 100%;
+   border-radius: .3em;
  }
 
  .outline {
    border: 1px solid darkgray;
  }
 
-
 .crier .progress {
   width: 0;
-  height: .2em;
-  background-color:#31B404;
+  height: .3em;
+
+  --color1: darkgray;
+  --color2: lightgray;
+
+    background-image: repeating-linear-gradient(
+      45deg,
+      var(--color1),
+      var(--color1) 10px,
+      var(--color2) 10px,
+      var(--color2) 20px);
+
+
+
+    /* background-image: repeating-linear-gradient(
+      45deg,
+      darkgray,
+      darkgray 10px,
+      #465298 10px,
+      #465298 20px); */
+
+      border-radius: .3em;
 }
 
 

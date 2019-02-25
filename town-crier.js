@@ -145,9 +145,9 @@ TownCrier.prototype.replaceCrierPlaceholderWithCrier = function(crierInfo, optio
             progressBar.parentElement.classList.add('outline');
 
             dom.addAndRemoveHandler(progressBar, 'transitionend', (event) => {
-                setTimeout(()=>{
+                //setTimeout(()=>{
                     this.removeCrier(newCrierElement);
-                }, 500);
+                //}, 500);
             });
 
             dom.applyTransition(progressBar, (element) => {

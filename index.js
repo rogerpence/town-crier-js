@@ -11,7 +11,8 @@ crierOptions.push({
    heading: "Heading 1",
    msg: "Wouldn't it be nice if we were older, then we wouldn't have to wait so long.",
    status: "primary",
-   closeType: 'user',
+   closeType: 'auto',
+   progressBar: true,
    duration: 12000
 });
 
@@ -29,7 +30,7 @@ crierOptions.push({
    msg: "I'm tied to you like the buttons on your blouse.",
    status: "success",
    closeType: 'auto',
-   progressBar: false,
+   progressBar: true,
    duration: 6000
 });
 
@@ -47,7 +48,7 @@ crierOptions.push({
    msg: "Rolland the Thompson Headless Gunner.",
    status: "warning",
    closeType: 'auto',
-   progressBar: false,
+   progressBar: true,
    duration: 6000
 });
 
@@ -55,7 +56,8 @@ crierOptions.push({
    heading: "Heading 6",
    msg: "I'm tied to you like the buttons on your blouse.",
    status: "info",
-   closeType: 'user',
+   closeType: 'auto',
+   progressBar: true,
    duration: 18000
 });
 

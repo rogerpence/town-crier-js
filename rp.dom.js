@@ -1,10 +1,12 @@
 const MS_DELAY_APPLYING_TRANSITION = 40;
 
 
-export function addAndRemoveHandler(target, eventName, fn) {
+export function addAndRemoveHandler(target, eventName, fn, delay = 250) {
         const eventHandler = (event) => {
             if (fn && typeof fn === 'function') {
-                fn(event);
+                setTimeout(() => {
+                    fn(event);
+                }, delay)
             }
             target.removeEventListener(eventName, eventHandler);
         }
