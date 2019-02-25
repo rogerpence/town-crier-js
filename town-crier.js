@@ -83,10 +83,6 @@ TownCrier.prototype.getPlaceholderHTML = function(id, height=0) {
     return placeholderDiv;
 }
 
-TownCrier.prototype.showMessage = function(e) {
-    console.log(e);
-}
-
 TownCrier.prototype.insertCrierIntoDomAsHiddenElement = function(options) {
     const crierHTML = this.getCrierHTML(options);
     document.body.insertAdjacentHTML('afterbegin', crierHTML);
@@ -104,13 +100,14 @@ TownCrier.prototype.removeCrier = function(newCrierElement, duration = 0) {
     dom.addAndRemoveHandler(newCrierElement, 'transitionend', (event) => {
         setTimeout(()=>{
             dom.removeElement(newCrierElement);
-        }, 500);
+        }, 200);
     });
 
     newCrierElement.style.minHeight = 0;
-    newCrierElement.style.transition = 'opacity 750ms ease, height 750ms ease';
+    newCrierElement.style.transition = 'opacity 750ms ease, height 750ms ease, margin-bottom 765ms ease';
     newCrierElement.style.opacity = 0;
     newCrierElement.style.height = 0;
+    newCrierElement.style.marginBottom = 0;
 }
 
 TownCrier.prototype.replaceCrierPlaceholderWithCrier = function(crierInfo, options) {
