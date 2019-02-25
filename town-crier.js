@@ -35,7 +35,6 @@ TownCrier.prototype.ensureCrierContainer = function() {
 }
 
 TownCrier.prototype.getManualCloseMarkup = function(options) {
-    // auto, manual, both
     const isUserClose = (options.closeType === 'user');
     const closeIcon = (isUserClose) ? 'fas fa-window-close' : 'far fa-window-close';
     const titleText = (isUserClose) ? 'You must click to close this' : 'You can click to close this';
@@ -145,9 +144,7 @@ TownCrier.prototype.replaceCrierPlaceholderWithCrier = function(crierInfo, optio
             progressBar.parentElement.classList.add('outline');
 
             dom.addAndRemoveHandler(progressBar, 'transitionend', (event) => {
-                //setTimeout(()=>{
-                    this.removeCrier(newCrierElement);
-                //}, 500);
+                this.removeCrier(newCrierElement);
             });
 
             dom.applyTransition(progressBar, (element) => {
@@ -174,6 +171,6 @@ TownCrier.prototype.showCrier = function(options) {
 
     dom.applyTransition(crierTemp, (element) => {
         element.style.height = `${crierInfo.height}px`;
-        element.style.transition = 'height 500ms ease'; //, margin-bottom 500ms ease';
+        element.style.transition = 'height 500ms ease';
     })
 }
