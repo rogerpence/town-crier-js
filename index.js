@@ -21,7 +21,7 @@ crierOptions.push({
    status: "secondary",
    closeType: 'auto',
    duration: 8000,
-   progressBar: false
+   progressBar: true
 });
 
 crierOptions.push({
@@ -38,7 +38,7 @@ crierOptions.push({
    msg: "Wouldn't it be nice if we were older, then we wouldn't have to wait so long.",
    status: "danger",
    closeType: 'auto',
-   progressBar: false,
+   progressBar: true,
    duration: 6000
 });
 

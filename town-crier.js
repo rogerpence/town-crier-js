@@ -102,7 +102,9 @@ TownCrier.prototype.insertCrierIntoDomAsHiddenElement = function(options) {
 
 TownCrier.prototype.removeCrier = function(newCrierElement, duration = 0) {
     dom.addAndRemoveHandler(newCrierElement, 'transitionend', (event) => {
-        dom.removeElement(newCrierElement);
+        setTimeout(()=>{
+            dom.removeElement(newCrierElement);
+        }, 500);
     });
 
     newCrierElement.style.minHeight = 0;
@@ -136,13 +138,20 @@ TownCrier.prototype.replaceCrierPlaceholderWithCrier = function(crierInfo, optio
     const duration = newCrierElement.getAttribute('data-duration');
 
     if (newCrierElement.getAttribute('data-close-type') !== 'user') {
-        window.setTimeout(()=> {
-            this.removeCrier(newCrierElement);
-        }, duration);
-
-        if (duration > 0 && options.progressBar) {
+        if (!options.progressBar) {
+            window.setTimeout(()=> {
+                this.removeCrier(newCrierElement);
+            }, duration);
+        }
+        else {
             const progressBar = document.getElementById(`pb${options.idNumber}`);
             progressBar.parentElement.classList.add('outline');
+
+            dom.addAndRemoveHandler(progressBar, 'transitionend', (event) => {
+                setTimeout(()=>{
+                    this.removeCrier(newCrierElement);
+                }, 500);
+            });
 
             dom.applyTransition(progressBar, (element) => {
                 element.style.width = 0;
