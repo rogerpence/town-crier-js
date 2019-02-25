@@ -12,7 +12,6 @@ crierOptions.push({
    msg: "Wouldn't it be nice if we were older, then we wouldn't have to wait so long.",
    status: "primary",
    closeType: 'user',
-   progressBar: false,
    duration: 12000
 });
 
@@ -22,7 +21,7 @@ crierOptions.push({
    status: "secondary",
    closeType: 'auto',
    progressBar: true,
-   duration: 5000
+   duration: 2500
 });
 
 crierOptions.push({
@@ -30,7 +29,7 @@ crierOptions.push({
    msg: "I'm tied to you like the buttons on your blouse.",
    status: "success",
    closeType: 'auto',
-   progressBar: false,
+   progressBar: true,
    duration: 10000
 });
 

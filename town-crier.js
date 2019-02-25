@@ -4,6 +4,7 @@ import * as dom from './rp.dom.js';
 import {crierStatus} from './town-crier-status.js';
 
 export function TownCrier(options) {
+    this.ensureCrierContainer();
     this.options = this.assignOptionDefaults(options)
     this.showCrier(this.options);
 };
@@ -15,11 +16,23 @@ TownCrier.prototype.assignOptionDefaults = function(options) {
     options.duration = options.duration || 5000;
     options.closeType = options.closeType || 'auto';
     options.idNumber = Math.floor(Math.random() * Math.floor(5000));
-    options.progressBar = options.progressBar || false;
+
+    options.progressBar = (options.progressBar === undefined) ? false : options.progressBar;
 
     options.status = crierStatus.find(arr => arr.status === options.status) || crierStatus[DEFAULT_STATUS_INDEX];
     return options;
 };
+
+TownCrier.prototype.ensureCrierContainer = function() {
+    if (!document.querySelector('.criers-outer-container')) {
+        const html =
+`<div class="criers-outer-container">
+<div class="criers-inner-container">
+</div>
+</div>`;
+        document.body.insertAdjacentHTML('afterbegin', html);
+    }
+}
 
 TownCrier.prototype.getManualCloseMarkup = function(options) {
     // auto, manual, both
@@ -93,8 +106,13 @@ TownCrier.prototype.removeCrier = function(newCrierElement, duration = 0) {
             dom.removeElement(newCrierElement);
         });
 
+        const style = getComputedStyle(newCrierElement);
+        console.log(style);
+
+        newCrierElement.style.height = '77px';
+
         newCrierElement.style.minHeight = 0;
-        newCrierElement.style.transition = 'opacity 400ms ease, height 400ms ease';
+        newCrierElement.style.transition = 'opacity 400ms ease, height 2400ms ease';
         newCrierElement.style.opacity = 0;
         newCrierElement.style.height = 0;
     }, duration);
