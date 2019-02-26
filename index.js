@@ -20,9 +20,10 @@ crierOptions.push({
    heading: "Heading 2",
    msg: "Rolland the Thompson Headless Gunner.",
    status: "secondary",
-   closeType: 'auto',
+   closeType: 'user',
    duration: 8000,
-   progressBar: true
+   progressBar: true,
+   shadow: true
 });
 
 crierOptions.push({

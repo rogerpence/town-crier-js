@@ -1,31 +1,21 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 div.criers-outer-container {
     pointer-events: none;
     position: fixed;
     top: 20px;
-
-    /* width: auto; */
-    z-index: 500;
-    max-width: 24em;
-
+    z-index: 600;
+    width: 100%;
     display: grid;
     grid-template-rows: auto;
-
-
-    right: 20px;
+    padding: 20px 20px;
     justify-items: end;
+    border: 1px solid red;
 }
-/*
-.criers-inner-container {
-    pointer-events: none;
-    display: grid;
-    grid-template-rows: auto;
-    justify-items: end;
-    justify-content: end;
-} */
 
 .crier {
     display: grid;
@@ -35,20 +25,23 @@ div.criers-outer-container {
     border-radius: .5em;
     font-family: sans-serif;
     font-size: .7em;
-    box-shadow: .1em .1em .1em .1em rgba(0, 0, 0, 0.2);
+    /* box-shadow: .1em .1em .1em .1em rgba(0, 0, 0, 0.2); */
     opacity: 0;
     max-width: 24em;
     min-width: 16em;
     min-height: 2.5em;
-    overflow: hidden !important;
-    overflow: -moz-scrollbars-none !important;
-    scrollbar-width: none !important;
+    overflow: hidden;
     z-index: 600;
-    transition: top 1000ms ease;
+    /* transition: top 1000ms ease; */
     opacity: 0;
     margin-bottom: .5rem;
     position: absolute;
     top: -500px;
+    justify-self: end;
+}
+
+.crier-shadow {
+    box-shadow: .1em .1em .1em .1em rgba(0, 0, 0, 0.2);
 }
 
 @media (min-width: 768px) {
@@ -89,11 +82,14 @@ div.criers-outer-container {
 
 .crier .progress {
     width: 0;
-    height: .3em;
+    height: .4em;
     --color1: darkgray;
-    --color2: lightgray;
+    --color2: #484848;
+    /* --color1: white;
+    --color2: black; */
+
     background-image: repeating-linear-gradient(
-      45deg,
+      -45deg,
       var(--color1),
       var(--color1) 10px,
       var(--color2) 10px,

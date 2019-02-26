@@ -17,14 +17,15 @@ TownCrier.prototype.assignOptionDefaults = function(options) {
     options.closeType = options.closeType || 'auto';
     options.idNumber = Math.floor(Math.random() * Math.floor(5000));
 
+    options.align = options.align || 'right';
+    options.justifySelf = (options.align === 'right') ? 'end' : 'start';
+
     options.progressBar = (options.progressBar === undefined) ? false : options.progressBar;
+    options.shadow = (options.shadow === undefined) ? false : options.shadow;
 
     options.status = crierStatus.find(arr => arr.status === options.status) || crierStatus[DEFAULT_STATUS_INDEX];
     return options;
 };
-
-// <div class="criers-inner-container"></div>
-
 
 TownCrier.prototype.ensureCrierContainer = function() {
     if (!document.querySelector('.criers-outer-container')) {
@@ -118,6 +119,10 @@ TownCrier.prototype.replaceCrierPlaceholderWithCrier = function(crierInfo, optio
     newCrierElement.style.position = 'static';
     newCrierElement.style.height = `${crierInfo.height}px`;
     newCrierElement.setAttribute('data-height', `${crierInfo.height}px`);
+    newCrierElement.style.justifySelf = options.justifySelf;
+    if (options.shadow) {
+        newCrierElement.classList.add('crier-shadow');
+    }
 
     crierMainContainer.replaceChild(newCrierElement, crierPlaceholder);
 
