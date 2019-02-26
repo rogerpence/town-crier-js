@@ -24,6 +24,8 @@ TownCrier.prototype.assignOptionDefaults = function(options) {
     options.shadow = (options.shadow === undefined) ? false : options.shadow;
 
     options.status = crierStatus.find(arr => arr.status === options.status) || crierStatus[DEFAULT_STATUS_INDEX];
+
+    console.log(options);
     return options;
 };
 

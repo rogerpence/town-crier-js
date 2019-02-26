@@ -12,7 +12,8 @@ div.criers-outer-container {
     width: 100%;
     display: grid;
     grid-template-rows: auto;
-    padding: 20px 20px;
+    padding-left: 20px;
+    padding-right: 20px;
     justify-items: end;
     border: 1px solid red;
 }
@@ -25,14 +26,12 @@ div.criers-outer-container {
     border-radius: .5em;
     font-family: sans-serif;
     font-size: .7em;
-    /* box-shadow: .1em .1em .1em .1em rgba(0, 0, 0, 0.2); */
     opacity: 0;
     max-width: 24em;
     min-width: 16em;
     min-height: 2.5em;
     overflow: hidden;
     z-index: 600;
-    /* transition: top 1000ms ease; */
     opacity: 0;
     margin-bottom: .5rem;
     position: absolute;

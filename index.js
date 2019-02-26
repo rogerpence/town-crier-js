@@ -5,6 +5,15 @@ const sleep = (milliseconds) => {
    return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
 
+// align: left|right​                           default = 'right'
+// classList: ​space-delimited list of classes  default = ''
+// closeType: "user|auto|both​"                 default = 'auto'
+// duration: 8000​                              default = 8000     milliseconds
+// heading: "Heading 2"​
+// msg: "Rolland the Thompson Headless Gunner."​
+// progressBar: true​                           default: false
+// shadow: true                                default: false
+
 const crierOptions = [];
 
 crierOptions.push({
