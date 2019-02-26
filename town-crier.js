@@ -101,9 +101,7 @@ TownCrier.prototype.insertCrierIntoDomAsHiddenElement = function(options) {
 
 TownCrier.prototype.removeCrier = function(newCrierElement, duration = 0) {
     dom.addAndRemoveHandler(newCrierElement, 'transitionend', (event) => {
-        setTimeout(()=>{
-            dom.removeElement(newCrierElement);
-        }, 200);
+        dom.removeElement(newCrierElement);
     });
 
     newCrierElement.style.minHeight = 0;
