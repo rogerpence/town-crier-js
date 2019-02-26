@@ -23,12 +23,13 @@ TownCrier.prototype.assignOptionDefaults = function(options) {
     return options;
 };
 
+// <div class="criers-inner-container"></div>
+
+
 TownCrier.prototype.ensureCrierContainer = function() {
     if (!document.querySelector('.criers-outer-container')) {
         const html =
 `<div class="criers-outer-container">
-<div class="criers-inner-container">
-</div>
 </div>`;
         document.body.insertAdjacentHTML('afterbegin', html);
     }
@@ -110,7 +111,7 @@ TownCrier.prototype.removeCrier = function(newCrierElement, duration = 0) {
 }
 
 TownCrier.prototype.replaceCrierPlaceholderWithCrier = function(crierInfo, options) {
-    const crierMainContainer = document.querySelector('.criers-inner-container');
+    const crierMainContainer = document.querySelector('.criers-outer-container');
 
     const crierPlaceholder = document.getElementById(crierInfo.id);
     const newCrierElement = crierInfo.element;
@@ -158,7 +159,7 @@ TownCrier.prototype.replaceCrierPlaceholderWithCrier = function(crierInfo, optio
 
 TownCrier.prototype.showCrier = function(options) {
     const crierInfo = this.insertCrierIntoDomAsHiddenElement(options);
-    const crierMainContainer = document.querySelector('.criers-inner-container');
+    const crierMainContainer = document.querySelector('.criers-outer-container');
     const placeholderHTML = this.getPlaceholderHTML(crierInfo.id);
 
     crierMainContainer.insertAdjacentHTML('afterbegin', placeholderHTML);

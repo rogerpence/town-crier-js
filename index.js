@@ -45,9 +45,9 @@ crierOptions.push({
 
 crierOptions.push({
    heading: "Heading 5",
-   msg: "Rolland the Thompson Headless Gunner.",
+   msg: "Rolland.",
    status: "warning",
-   closeType: 'auto',
+   closeType: 'user',
    progressBar: true,
    duration: 6000
 });
@@ -56,7 +56,7 @@ crierOptions.push({
    heading: "Heading 6",
    msg: "I'm tied to you like the buttons on your blouse.",
    status: "info",
-   closeType: 'auto',
+   closeType: 'user',
    progressBar: true,
    duration: 18000
 });

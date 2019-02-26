@@ -6,26 +6,26 @@ div.criers-outer-container {
     pointer-events: none;
     position: fixed;
     top: 20px;
-    right: 20px;
-    width: auto;
-    z-index: 500;
-}
 
+    /* width: auto; */
+    z-index: 500;
+    max-width: 24em;
+
+    display: grid;
+    grid-template-rows: auto;
+
+
+    right: 20px;
+    justify-items: end;
+}
+/*
 .criers-inner-container {
     pointer-events: none;
     display: grid;
     grid-template-rows: auto;
     justify-items: end;
     justify-content: end;
-}
-
-.criers-on-left {
-    left: 20px;
-}
-
-.criers-on-right {
-    right: 20px;
-}
+} */
 
 .crier {
     display: grid;
@@ -37,14 +37,14 @@ div.criers-outer-container {
     font-size: .7em;
     box-shadow: .1em .1em .1em .1em rgba(0, 0, 0, 0.2);
     opacity: 0;
-    max-width: 25em;
+    max-width: 24em;
+    min-width: 16em;
     min-height: 2.5em;
     overflow: hidden !important;
     overflow: -moz-scrollbars-none !important;
     scrollbar-width: none !important;
     z-index: 600;
     transition: top 1000ms ease;
-   /* justify-self: start; */
     opacity: 0;
     margin-bottom: .5rem;
     position: absolute;
