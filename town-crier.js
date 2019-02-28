@@ -141,25 +141,33 @@ TownCrier.prototype.replaceCrierPlaceholderWithCrier = function(crierInfo, optio
 
     if (newCrierElement.getAttribute('data-close-type') !== 'user') {
         if (!options.progressBar) {
-            window.setTimeout(()=> {
-                this.removeCrier(newCrierElement);
-            }, duration);
+            queueCrierRemovalWithoutProgressBar(crierElement, duration);
         }
         else {
-            const progressBar = document.getElementById(`pb${options.idNumber}`);
-            progressBar.parentElement.classList.add('outline');
-
-            dom.addAndRemoveHandler(progressBar, 'transitionend', (event) => {
-                this.removeCrier(newCrierElement);
-            });
-
-            dom.applyTransition(progressBar, (element) => {
-                element.style.width = 0;
-                element.style.transition = `width ${duration}ms ease`;
-                element.style.width = `${progressBar.parentElement.clientWidth}px`;
-            })
+            queueCrierRemovalWithProgressBar(crierElement, duration, options);
         }
     }
+}
+
+TownCrier.prototype.queueCrierRemovalWithoutProgressBar = function(crierElement, duration) {
+    window.setTimeout(()=> {
+        this.removeCrier(crierElement);
+    }, duration);
+}
+
+TownCrier.prototype.queueCrierRemovalWithProgressBar = function(crierElement, duration, options) {
+    const progressBar = document.getElementById(`pb${options.idNumber}`);
+    progressBar.parentElement.classList.add('outline');
+
+    dom.addAndRemoveHandler(progressBar, 'transitionend', (event) => {
+        this.removeCrier(crierElement);
+    });
+
+    dom.applyTransition(progressBar, (element) => {
+        element.style.width = 0;
+        element.style.transition = `width ${duration}ms ease`;
+        element.style.width = `${progressBar.parentElement.clientWidth}px`;
+    })
 }
 
 TownCrier.prototype.showCrier = function(options) {
