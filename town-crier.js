@@ -98,16 +98,18 @@ TownCrier.prototype.insertCrierIntoDomAsHiddenElement = function(options) {
     }
 }
 
-TownCrier.prototype.removeCrier = function(newCrierElement, duration = 0) {
-    dom.addAndRemoveHandler(newCrierElement, 'transitionend', (event) => {
-        dom.removeElement(newCrierElement);
+TownCrier.prototype.removeCrier = function(crierElement, duration = 0) {
+    dom.applyElementTransition(crierElement, (element) => {
+        crierElement.style.transition = 'opacity 750ms ease, height 750ms ease, margin-bottom 765ms ease';
+        // Setting minHeight ensures crier fully collapses.
+        crierElement.style.minHeight = 0;
+        crierElement.style.opacity = 0;
+        crierElement.style.height = 0;
+        crierElement.style.marginBottom = 0;
+    })
+    .then(() => {
+        dom.removeElement(crierElement);
     });
-
-    newCrierElement.style.minHeight = 0;
-    newCrierElement.style.transition = 'opacity 750ms ease, height 750ms ease, margin-bottom 765ms ease';
-    newCrierElement.style.opacity = 0;
-    newCrierElement.style.height = 0;
-    newCrierElement.style.marginBottom = 0;
 }
 
 TownCrier.prototype.applyCrierAttributes = function(crierElement, crierInfo, options) {
@@ -118,6 +120,12 @@ TownCrier.prototype.applyCrierAttributes = function(crierElement, crierInfo, opt
     if (options.shadow) {
         crierElement.classList.add('crier-shadow');
     }
+
+    dom.addAndRemoveHandler(crierElement, 'click', (event) => {
+        if (crierElement.getAttribute('closeType') !== 'auto') {
+           this.removeCrier(crierElement);
+        }
+    });
 }
 
 TownCrier.prototype.replaceCrierPlaceholderWithCrier = function(crierInfo, options) {
@@ -130,16 +138,12 @@ TownCrier.prototype.replaceCrierPlaceholderWithCrier = function(crierInfo, optio
 
     crierMainContainer.replaceChild(newCrierElement, crierPlaceholder);
 
-    dom.applyTransition(newCrierElement, (element) => {
-        element.style.opacity = 1;
-        element.style.transition = 'opacity 750ms ease, margin-bottom 750ms ease';
-    })
-
-    dom.addAndRemoveHandler(newCrierElement, 'click', (event) => {
-        if (newCrierElement.getAttribute('closeType') !== 'auto') {
-            this.removeCrier(newCrierElement);
-        }
+    dom.applyElementTransition(newCrierElement, (element) => {
+         element.style.opacity = 1;
+         element.style.transition = 'opacity 750ms ease, margin-bottom 750ms ease';
     });
+    //.then(() => {
+    //});
 
     const duration = newCrierElement.getAttribute('data-duration');
 
@@ -161,17 +165,16 @@ TownCrier.prototype.queueCrierRemovalWithoutProgressBar = function(crierElement,
 
 TownCrier.prototype.queueCrierRemovalWithProgressBar = function(crierElement, duration, options) {
     const progressBar = document.getElementById(`pb${options.idNumber}`);
+
     progressBar.parentElement.classList.add('outline');
 
-    dom.addAndRemoveHandler(progressBar, 'transitionend', (event) => {
+    dom.applyElementTransition(progressBar, (element) => {
+        element.style.width = `${progressBar.parentElement.clientWidth}px`;
+        element.style.transition = `width ${duration}ms ease`;
+    })
+    .then(() => {
         this.removeCrier(crierElement);
     });
-
-    dom.applyTransition(progressBar, (element) => {
-        element.style.width = 0;
-        element.style.transition = `width ${duration}ms ease`;
-        element.style.width = `${progressBar.parentElement.clientWidth}px`;
-    })
 }
 
 TownCrier.prototype.showCrier = function(options) {
@@ -183,12 +186,11 @@ TownCrier.prototype.showCrier = function(options) {
 
     const crierTemp = crierMainContainer.firstElementChild;
 
-    dom.addAndRemoveHandler(crierTemp, 'transitionend', (event) => {
-        this.replaceCrierPlaceholderWithCrier(crierInfo, options);
-    });
-
-    dom.applyTransition(crierTemp, (element) => {
+    dom.applyElementTransition(crierTemp, (element) => {
         element.style.height = `${crierInfo.height}px`;
         element.style.transition = 'height 500ms ease';
     })
+    .then(() => {
+        this.replaceCrierPlaceholderWithCrier(crierInfo, options);
+    });
 }

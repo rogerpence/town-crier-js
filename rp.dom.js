@@ -1,6 +1,28 @@
 const MS_DELAY_APPLYING_TRANSITION = 40;
 
 
+
+export function applyElementTransition(target, fn, eventName = 'transitionend') {
+    // Very short delay before and after event to ensure DOM keeps up.
+    const DELAY = 40;
+
+    return new Promise((resolve) => {
+        const onComplete = (e) => {
+            setTimeout(()=>{
+                target.removeEventListener(eventName, onComplete);
+                resolve();
+            }, DELAY);
+        }
+
+        target.addEventListener(eventName, onComplete);
+
+        setTimeout(()=>{
+            fn(target)
+        }, DELAY);
+    });
+}
+
+
 export function addAndRemoveHandler(target, eventName, fn, delay = 250) {
         const eventHandler = (event) => {
             if (fn && typeof fn === 'function') {
