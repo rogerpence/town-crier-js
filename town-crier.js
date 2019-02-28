@@ -25,7 +25,6 @@ TownCrier.prototype.assignOptionDefaults = function(options) {
 
     options.status = crierStatus.find(arr => arr.status === options.status) || crierStatus[DEFAULT_STATUS_INDEX];
 
-    console.log(options);
     return options;
 };
 
@@ -111,18 +110,23 @@ TownCrier.prototype.removeCrier = function(newCrierElement, duration = 0) {
     newCrierElement.style.marginBottom = 0;
 }
 
+TownCrier.prototype.applyCrierAttributes = function(crierElement, crierInfo, options) {
+    crierElement.style.position = 'static';
+    crierElement.style.height = `${crierInfo.height}px`;
+    crierElement.setAttribute('data-height', `${crierInfo.height}px`);
+    crierElement.style.justifySelf = options.justifySelf;
+    if (options.shadow) {
+        crierElement.classList.add('crier-shadow');
+    }
+}
+
 TownCrier.prototype.replaceCrierPlaceholderWithCrier = function(crierInfo, options) {
     const crierMainContainer = document.querySelector('.criers-outer-container');
 
     const crierPlaceholder = document.getElementById(crierInfo.id);
     const newCrierElement = crierInfo.element;
-    newCrierElement.style.position = 'static';
-    newCrierElement.style.height = `${crierInfo.height}px`;
-    newCrierElement.setAttribute('data-height', `${crierInfo.height}px`);
-    newCrierElement.style.justifySelf = options.justifySelf;
-    if (options.shadow) {
-        newCrierElement.classList.add('crier-shadow');
-    }
+
+    this.applyCrierAttributes(newCrierElement, crierInfo, options);
 
     crierMainContainer.replaceChild(newCrierElement, crierPlaceholder);
 
@@ -141,10 +145,10 @@ TownCrier.prototype.replaceCrierPlaceholderWithCrier = function(crierInfo, optio
 
     if (newCrierElement.getAttribute('data-close-type') !== 'user') {
         if (!options.progressBar) {
-            queueCrierRemovalWithoutProgressBar(crierElement, duration);
+            this.queueCrierRemovalWithoutProgressBar(newCrierElement, duration);
         }
         else {
-            queueCrierRemovalWithProgressBar(crierElement, duration, options);
+            this.queueCrierRemovalWithProgressBar(newCrierElement, duration, options);
         }
     }
 }
