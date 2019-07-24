@@ -15,7 +15,7 @@ div.criers-outer-container {
     padding-left: 20px;
     padding-right: 20px;
     justify-items: end;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 .crier {
